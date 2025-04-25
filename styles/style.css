@@ -1,0 +1,621 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'GRIFTER';
+  src: url('../assets/grifterbold.otf') format('opentype'); /* Custom font, I want to use exactly this one */
+}
+
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'GRIFTER', sans-serif; 
+  color: white;
+  background-color: #0c0325; /* Test background, just in case */
+}
+
+/* Hero section styles */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  width: clamp(368px, 108vw, 2000px); /* Super secret technology, ask for further instructions :) */
+  height: 100%;
+  object-fit: fill;
+  z-index: 1;
+}
+
+.girl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: clamp(300px, 36vw, 900px); /* Responsive image size */
+  z-index: 2;
+}
+
+.logo {
+  position: absolute;
+  top: 3vh;
+  left: 7vw;
+  width: clamp(50px, 6vw, 250px); /* Responsive logo size */
+  height: auto;
+  z-index: 2;
+}
+
+.navigation {                 /* Navigation bar */
+  position: absolute;
+  top: 6vh;
+  right: 7vw;
+  z-index: 2;
+}
+
+.navigation ul {
+  display: flex;
+  gap: 60px;
+  list-style: none;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.navigation a:hover {
+  color: #db0091;
+}
+
+.menu-toggle {   /* Dropdown menu for smaller screens */
+  display: none;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+.scroll-wheel {          /* Scroll wheel container */
+  position: absolute;
+  top: clamp(60vh, 68vh, 80vh);
+  right: clamp(20vw, 26vw, 30vw);
+  width: clamp(40px, 7vw, 100px);   /* Clamp for responsive width, however, I assume js is needed for better responsiveness */
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.scroll-wheel img.scroll {
+  width: 100%;
+  position: absolute;
+  animation: spin 3s linear infinite;
+  will-change: transform;
+}
+
+.scroll-wheel img.arrow-down {    /* Arrow inside the wheel */
+  width: clamp(4px, 1vw, 12px);
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  animation: jump 1.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+
+@keyframes jump {                 /* Arrow animation */
+  0%, 100% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-4px); 
+  }
+}
+
+@keyframes spin {             /* Wheel animation */
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-text {         /* Text container */ 
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  z-index: 3;
+}
+
+.hero-text h1 {      /* Main title */
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 4px;
+}
+
+.hero-text p {      /* Subtitle */
+  font-size: 14px;
+  margin-top: 20px;
+  max-width: 700px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+
+.buttons {     /* Button container */ 
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {                    /* Button styles */ 
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.explore {                     /* Explore button */    
+  background-color: #f10287;
+  color: white;
+}
+
+.explore:hover {           
+  color: black;
+  background-color: white;
+}
+
+.subscribe {                  /* Subscribe button */            
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.subscribe:hover {
+  color: black;
+  background-color: white;
+  border: 1px solid white;
+}
+
+.running-line-wrapper {       /* Running line container */
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  height: 70px;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.running-line {
+  display: flex;
+  animation: scrollLine 40s linear infinite;
+}
+
+.running-line img {
+  height: 50px;
+  margin-right: 55px;
+  flex-shrink: 0;
+}
+
+@keyframes scrollLine {      /* Running line animation */
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Main content styles */
+.main-content {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin: 40px 0 80px;
+}
+
+/* Projects section */
+.projects-section {  
+  padding: 60px 80px;
+}
+
+.projects-grid {      /* Projects grid */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 100px;
+  padding: 40px 80px;
+  justify-items: center;
+}
+
+.project-card {            /* Project card */
+  width: 100%;
+  max-width: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease-in-out, opacity 1s ease-out;
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.project-card.visible {   /* Visible class for animation */ 
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card.visible:hover {
+  transform: translateY(0) scale(1.03);
+}
+
+.project-card:nth-child(1).visible { transition-delay: 0s; }      /* Animation adjustments */  
+.project-card:nth-child(2).visible { transition-delay: 0.3s; }
+.project-card:nth-child(3).visible { transition-delay: 0s; }       
+.project-card:nth-child(4).visible { transition-delay: 0.3s; }
+
+/* Skills section */
+.skills-section {
+  padding: 60px 80px;
+  text-align: center;
+}
+
+.skills-icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 80px;
+  margin-top: 20px;
+}
+
+.skills-icons img {  /* Sorry, I did use custome images with pre-written text, I hope you don't mind */
+  width: 204px;
+  height: 270px;
+  object-fit: contain;
+}
+
+
+/* Contact section */
+.contact-section {
+  padding: 100px 80px 60px;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: center;   
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-top: 40px;
+  }
+
+.form-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 25px;
+  width: 100%;
+  max-width: 500px; 
+  color: black;
+  margin: 0 auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-container h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@keyframes blink-glow {        /* Contact form animation on Explore button click */ 
+  0%, 100% {
+    box-shadow: 0 0 0px #db0091;
+  }
+  20% {
+    box-shadow: 0 0 16px #db0091;
+  }
+  40% {
+    box-shadow: 0 0 0px #db0091;
+  }
+  60% {
+    box-shadow: 0 0 16px #db0091;
+  }
+  80% {
+    box-shadow: 0 0 0px #db0091;
+  }
+}
+
+.form-container.blink {
+  animation: blink-glow 3s ease-in-out 1;
+}
+
+.contact-form {         /* Contact form */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.contact-form input {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+}
+
+.contact-form small {
+  font-weight: normal;
+  font-size: 10px;
+  margin-top: 4px;
+  color: #333;
+}
+
+.form-submit {     /* Submit button */  
+  width: 200px;
+  margin: 20px auto 0;
+  background-color: #db0091;
+  color: white;
+  padding: 14px;
+  border: 2px solid #db0091;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-submit:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #000000;
+}
+
+.bubble {                                 /* Bubble container, oval with sosial icons inside */           
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 18px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.bubble img {
+  width: 38px;
+  height: 38px;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.bubble img:hover {
+  filter: brightness(0.7) saturate(1.2);
+  transform: scale(1.1);
+}
+
+.message-container {              /* Message container */
+  width: 100%;
+  max-width: 500px; 
+  text-align: left;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  margin: 0 auto; 
+}
+
+.message-container h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #f10287;
+  text-align: center;
+}
+
+.message-container .quote {
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-style: italic;
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.message-container .author {
+  font-size: 12px;
+  color: #aaa;
+  text-align: right;
+  margin-bottom: 60px;
+
+}
+
+.message-container .footer-note {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #ddd;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.footer {                 /* Footer */
+  text-align: center;
+  margin-top: 140px;
+  font-size: 14px;
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+ /* Responsive styles */
+@media (max-width: 1200px) {
+  .navigation ul {
+    gap: 40px;
+  }
+
+  .navigation a {
+    font-size: 18px;
+  }
+
+  .scroll-wheel {
+    top: 80vh; 
+  }
+
+  .hero-text {
+    top: 200px;
+    left: 80px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+  
+  .hero-text p {
+    font-size: 13px;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    top: 0vh;
+    right: 4vw;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+    z-index: 3;
+  }
+
+  .navigation ul {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    position: absolute;
+    top: 9vh;
+    right: 4vw;
+    gap: 15px;
+    z-index: 3;
+  }
+
+  .navigation ul.active {
+    display: flex;
+  }
+
+  .navigation a {
+    font-size: 16px;
+  }
+
+  .scroll-wheel {
+    display: none;
+  }
+
+  .girl {
+    display: none;
+  }
+
+  .hero-text {
+    top: 160px;
+    left: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-text p {
+    font-size: 12px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 354px) {
+  .navigation {
+    top: 0vh;
+    right: 4vw;
+  }
+
+  .menu-toggle {
+    top: 0vh;
+    right: 3vw;
+  }
+
+  .navigation ul {
+    top: 6vh;
+    right: 3vw;
+    gap: 10px;
+  }
+
+  .navigation a {
+    font-size: 14px;
+  }
+
+  .hero-text {
+    top: 100px;
+    left: 20px;
+    text-align: center; 
+  }
+
+  .hero-text h1 {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .hero-text p {
+    font-size: 11px;
+  }
+
+  .bubble img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .bubble {
+    gap: 16px;
+    padding: 14px;
+  }
+}
