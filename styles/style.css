@@ -151,7 +151,7 @@ body {
   opacity: 0.7;
 }
 
-.buttons {     /* Button container */ 
+.buttons {              /* Button container */ 
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -383,7 +383,7 @@ button {                    /* Button styles */
 }
 
 .form-submit {     /* Submit button */  
-  width: 200px;
+  width: 150px;
   margin: 20px auto 0;
   background-color: #db0091;
   color: white;
@@ -573,7 +573,7 @@ button {                    /* Button styles */
   }
 }
 
-@media (max-width: 354px) {
+@media (max-width: 376px) {
   .navigation {
     top: 0vh;
     right: 4vw;
@@ -597,7 +597,9 @@ button {                    /* Button styles */
   .hero-text {
     top: 100px;
     left: 20px;
-    text-align: center; 
+    right: 20px;
+    text-align: center;
+    justify-content: center;
   }
 
   .hero-text h1 {
@@ -606,7 +608,7 @@ button {                    /* Button styles */
   }
 
   .hero-text p {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .bubble img {
@@ -617,5 +619,14 @@ button {                    /* Button styles */
   .bubble {
     gap: 16px;
     padding: 14px;
+  }
+
+  .form-submit {
+    width: 100px;
+    padding: 10px;
+    font-size: 12px;
+  }
+  .buttons {
+    justify-content: center;
   }
 }
